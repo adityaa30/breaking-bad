@@ -16,6 +16,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   root: {
     marginTop: theme.spacing(10),
     display: "flex",
+    minHeight: "100vh",
     flexDirection: "column",
     background: `url(${BackgroundImage}) no-repeat center center fixed`,
     backgroundSize: "cover"
@@ -76,7 +77,7 @@ export default function Home() {
     text: searchText,
     debouncedText: debouncedSearchText,
     setTextDebounced: setSearchText
-  } = useDebouncedText("", 1000);
+  } = useDebouncedText("", 400);
 
   const { data: characters, loading } = useFetch<Array<Character>>(
     `https://breakingbadapi.com/api/characters?` +
@@ -109,7 +110,7 @@ export default function Home() {
         {loading && <BorderLinearProgress variant="indeterminate" value={50} />}
       </AppBar>
 
-      {characters && <CharacterCardGrid characters={characters} />}
+      <div>{characters && <CharacterCardGrid characters={characters} />}</div>
 
       <Pagination
         className={styles.pagination}

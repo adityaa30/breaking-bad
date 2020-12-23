@@ -1,13 +1,12 @@
 import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
-import Home from "./components/Home";
-import CharacterDetails from "./components/CharacterDetails";
-import "./App.css";
+import Home from "./Home";
+import CharacterDetails from "./CharacterDetails";
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Switch>
         <Route path="/character/:charId">
           <CharacterDetails />
