@@ -1,3 +1,4 @@
+import { Theme } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import React from "react";
 import { Character } from "../types/api";
@@ -7,12 +8,15 @@ interface Props {
   characters: Array<Character>;
 }
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   root: {
     width: "100%",
     display: "grid",
+    [theme.breakpoints.down("sm")]: {
+      display: "inline",
+    },
     gridTemplateColumns: "repeat(auto-fit, minmax(500px, 1fr))",
-    overflowY: "scroll",
+    overflowY: "hidden",
     overflowX: "hidden",
   },
 }));

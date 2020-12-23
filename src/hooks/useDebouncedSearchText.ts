@@ -1,7 +1,7 @@
-import { useState, useCallback, ChangeEvent } from "react";
+import { useState, useCallback } from "react";
 import { debounce } from "lodash";
 
-export default function useDebouncedSearchText(
+export default function useDebouncedText(
   initValue: string,
   debounceTime: number
 ) {
@@ -13,10 +13,10 @@ export default function useDebouncedSearchText(
     []
   );
 
-  const handleTextChange = (nextValue: string) => {
+  const setTextDebounced = (nextValue: string) => {
     setText(nextValue);
     setDebouncedTextCallback(nextValue);
   };
 
-  return { text, debouncedText, handleTextChange};
+  return { text, debouncedText, setTextDebounced};
 }

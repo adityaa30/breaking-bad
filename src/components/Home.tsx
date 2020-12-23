@@ -6,6 +6,8 @@ import useFetch from "../hooks/useFetch";
 import { Character } from "../types/api";
 import CharacterCardGrid from "./CharacterCardGrid";
 
+import DummyData from "../assets/dummy-data.json";
+
 import BackgroundImage from "../assets/home-background.png";
 
 const useStyles = makeStyles((theme) => ({
@@ -16,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundSize: "cover",
   },
   search: {
+    backdropFilter: "blur(10px)",
     margin: 24,
   },
 }));
@@ -26,15 +29,16 @@ export default function Home() {
   const {
     text: searchText,
     debouncedText: debouncedSearchText,
-    handleTextChange: handleSearchTextChange,
+    setTextDebounced: setSearchText,
   } = useDebouncedText("", 1000);
 
-  const { data: characters } = useFetch<Array<Character>>(
-    `https://breakingbadapi.com/api/characters?name=${debouncedSearchText.replace(
-      " ",
-      "+"
-    )}`
-  );
+  // const { data: characters } = useFetch<Array<Character>>(
+  //   `https://breakingbadapi.com/api/characters?name=${debouncedSearchText.replace(
+  //     " ",
+  //     "+"
+  //   )}`
+  // );
+  const characters = DummyData as Array<Character>; 
 
   return (
     <div className={styles.root}>
@@ -42,7 +46,7 @@ export default function Home() {
         id="outlined-basic"
         className={styles.search}
         value={searchText}
-        onChange={(event) => handleSearchTextChange(event.target.value)}
+        onChange={(event) => setSearchText(event.target.value)}
         label="Search"
         placeholder="Walter White"
         helperText="Search your favourite character name"
