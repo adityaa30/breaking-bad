@@ -6,6 +6,8 @@ export interface Character {
   img: string;
   status: string;
   nickname: string;
+  appearance: Array<number>;
+  portrayed: string;
 }
 
 export interface Quote {

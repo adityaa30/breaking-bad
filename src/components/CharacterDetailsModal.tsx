@@ -9,7 +9,9 @@ import {
   Typography,
   List,
   ListItem,
-  ListItemText
+  ListItemText,
+  Button,
+  CardActions
 } from "@material-ui/core";
 import { Character, Quote } from "../types/api";
 import useFetch from "../hooks/useFetch";
@@ -17,7 +19,7 @@ import useFetch from "../hooks/useFetch";
 const useStyles = makeStyles((theme) => ({
   modal: {
     display: "flex",
-    minWidth: "30vw",
+    minWidth: "50vw",
     alignItems: "center",
     justifyContent: "center"
   },
@@ -38,6 +40,13 @@ const useStyles = makeStyles((theme) => ({
   quotes: {
     maxHeight: "30vh",
     overflowY: "scroll"
+  },
+  overlayed: {
+    boxShadow: "0 2px 4px 0 rgba(0,0,0,0.2)",
+    padding: 10,
+    margin: 8,
+    backgroundColor: "rgba(255, 255, 255, 0.1)",
+    borderRadius: 8
   }
 }));
 
@@ -63,13 +72,16 @@ export default function MoreDetailsModal({ character, setShowModal }: Props) {
 
   if (!loading && quotes !== null && quotes.length > 0) {
     quotesRender = (
-      <List className={styles.quotes}>
-        {quotes.map((quote) => (
-          <ListItem key={quote.quote_id} button>
-            <ListItemText primary={quote.quote} />
-          </ListItem>
-        ))}
-      </List>
+      <>
+        <Typography variant="h6">Quotes Written</Typography>
+        <List className={styles.quotes}>
+          {quotes.map((quote) => (
+            <ListItem key={quote.quote_id}>
+              <ListItemText primary={quote.quote} />
+            </ListItem>
+          ))}
+        </List>
+      </>
     );
   }
 
@@ -85,11 +97,22 @@ export default function MoreDetailsModal({ character, setShowModal }: Props) {
     >
       <Card className={styles.root}>
         <CardContent className={styles.cardContent}>
-          <Typography className={styles.name} variant="h5">
+          <Typography className={styles.name} variant="h4">
             {character.name}
+          </Typography>
+          <Typography className={styles.overlayed} variant="subtitle1">
+            🎬 Portrayed by <b>{character.portrayed}</b>
+          </Typography>
+          <Typography className={styles.overlayed} variant="subtitle1">
+            📺 Appears in <b>{character.appearance.join(", ")} seasons</b>
           </Typography>
           {quotesRender}
         </CardContent>
+        <CardActions>
+          <Button variant="contained" onClick={() => setShowModal(false)}>
+            Close
+          </Button>
+        </CardActions>
       </Card>
     </Modal>
   );
