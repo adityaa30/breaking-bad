@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 import { AppBar, InputBase, TextField, Theme } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import { fade } from "@material-ui/core/styles";
@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   root: {
     marginTop: theme.spacing(10),
     display: "flex",
-    minHeight: "100vh",
+    minHeight: "90vh",
     flexDirection: "column",
     background: `url(${BackgroundImage}) no-repeat center center fixed`,
     backgroundSize: "cover"
@@ -71,6 +71,7 @@ const ITEMS_PER_PAGE = 10;
 export default function Home() {
   const styles = useStyles();
   const [page, setPage] = useState(1);
+  const [totalPage, setTotalPage] = useState(10);
   const paginationOffset = ITEMS_PER_PAGE * (page - 1);
 
   const {
@@ -88,6 +89,16 @@ export default function Home() {
       ].join("&")
   );
 
+  const handleSearchTextChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setPage(1);
+    if (event.target.value.length === 0) {
+      setTotalPage(11);
+    } else {
+      setTotalPage(1);
+    }
+    setSearchText(event.target.value);
+  };
+
   return (
     <div className={styles.root}>
       <AppBar className={styles.appBar}>
@@ -98,7 +109,7 @@ export default function Home() {
           <InputBase
             placeholder="Search by name…"
             value={searchText}
-            onChange={(event) => setSearchText(event.target.value)}
+            onChange={handleSearchTextChange}
             classes={{
               root: styles.inputRoot,
               input: styles.inputInput
@@ -114,7 +125,8 @@ export default function Home() {
 
       <Pagination
         className={styles.pagination}
-        count={10}
+        count={totalPage}
+        page={page}
         onChange={(e, currentPage) => setPage(currentPage)}
         boundaryCount={1}
         siblingCount={0}
