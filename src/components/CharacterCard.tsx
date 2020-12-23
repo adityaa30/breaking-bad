@@ -1,5 +1,7 @@
 import {
+  Button,
   Card,
+  CardActions,
   CardContent,
   CardMedia,
   Chip,
@@ -65,14 +67,18 @@ const useStyles = makeStyles((theme: Theme) => ({
     borderWidth: 2,
     marginLeft: 4,
     marginTop: 6
+  },
+  moreDetailsButton: {
+    textTransform: "none"
   }
 }));
 
 interface Props {
   character: Character;
+  showModal: (character: Character) => void;
 }
 
-export default function CharacterCard({ character }: Props) {
+export default function CharacterCard({ character, showModal }: Props) {
   const styles = useStyles();
 
   return (
@@ -116,6 +122,16 @@ export default function CharacterCard({ character }: Props) {
             />
           ))}
         </div>
+        <CardActions>
+          <Button
+            className={styles.moreDetailsButton}
+            variant="outlined"
+            size="medium"
+            onClick={() => showModal(character)}
+          >
+            More
+          </Button>
+        </CardActions>
       </CardContent>
     </Card>
   );

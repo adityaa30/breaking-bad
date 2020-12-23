@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useState } from "react";
-import { AppBar, InputBase, TextField, Theme } from "@material-ui/core";
+import { AppBar, InputBase, Theme } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import { fade } from "@material-ui/core/styles";
 import SearchIcon from "@material-ui/icons/Search";
@@ -11,6 +11,7 @@ import BorderLinearProgress from "./BorderLineProgress";
 import { Character } from "../types/api";
 import { Pagination } from "@material-ui/lab";
 import useFetch from "../hooks/useFetch";
+import CharacterDetailsModal from "./CharacterDetailsModal";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -72,6 +73,9 @@ export default function Home() {
   const styles = useStyles();
   const [page, setPage] = useState(1);
   const [totalPage, setTotalPage] = useState(10);
+  const [modalCharacter, setModalCharacter] = useState<Character | null>(null);
+  const [showModal, setShowModal] = useState(false);
+
   const paginationOffset = ITEMS_PER_PAGE * (page - 1);
 
   const {
@@ -118,10 +122,27 @@ export default function Home() {
             inputProps={{ "aria-label": "search" }}
           />
         </div>
-        {loading && <BorderLinearProgress variant="indeterminate" value={50} />}
+        {loading && <BorderLinearProgress variant="indeterminate" />}
       </AppBar>
 
-      <div>{characters && <CharacterCardGrid characters={characters} />}</div>
+      <div>
+        {characters && (
+          <CharacterCardGrid
+            characters={characters}
+            showModal={(character) => {
+              setModalCharacter(character);
+              setShowModal(true);
+            }}
+          />
+        )}
+      </div>
+
+      {showModal && modalCharacter && (
+        <CharacterDetailsModal
+          character={modalCharacter}
+          setShowModal={setShowModal}
+        />
+      )}
 
       <Pagination
         className={styles.pagination}

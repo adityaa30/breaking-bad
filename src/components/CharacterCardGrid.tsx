@@ -6,6 +6,7 @@ import CharacterCard from "./CharacterCard";
 
 interface Props {
   characters: Array<Character>;
+  showModal: (character: Character) => void;
 }
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -21,13 +22,17 @@ const useStyles = makeStyles((theme: Theme) => ({
   }
 }));
 
-export default function CharacterCardGrid({ characters }: Props) {
+export default function CharacterCardGrid({ characters, showModal }: Props) {
   const styles = useStyles();
 
   return (
     <div className={styles.root}>
       {characters.map((character) => (
-        <CharacterCard key={character.char_id} character={character} />
+        <CharacterCard
+          key={character.char_id}
+          character={character}
+          showModal={showModal}
+        />
       ))}
     </div>
   );
