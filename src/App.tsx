@@ -1,8 +1,8 @@
 import React from 'react';
 import {BrowserRouter, Switch, Route} from "react-router-dom";
 
-import Home from "./components/home";
-import CharacterDetails from "./components/character-details";
+import Home from "./components/Home";
+import CharacterDetails from "./components/CharacterDetails";
 import './App.css';
 
 function App() {
