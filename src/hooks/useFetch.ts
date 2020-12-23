@@ -9,8 +9,8 @@ export default function useFetch<T>(url: string) {
     fetch(url)
       .then((res) => res.text())
       .then((res) => {
-        setData(JSON.parse(res) as T);
         setLoading(false);
+        setData(JSON.parse(res) as T);
       })
       .catch((err) => {
         setLoading(false);

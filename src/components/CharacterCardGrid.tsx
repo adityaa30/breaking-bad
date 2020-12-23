@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme: Theme) => ({
       display: "inline",
     },
     gridTemplateColumns: "repeat(auto-fit, minmax(500px, 1fr))",
-    overflowY: "hidden",
+    overflowY: "auto",
     overflowX: "hidden",
   },
 }));
@@ -27,7 +27,7 @@ export default function CharacterCardGrid({ characters }: Props) {
   return (
     <div className={styles.root}>
       {characters.map((character) => (
-        <CharacterCard character={character} />
+        <CharacterCard key={character.char_id} character={character} />
       ))}
     </div>
   );
