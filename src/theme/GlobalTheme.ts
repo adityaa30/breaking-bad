@@ -2,10 +2,10 @@ import { createMuiTheme } from "@material-ui/core/styles";
 
 const theme = createMuiTheme({
   palette: {
-    type: "dark",
+    type: "dark"
   },
   typography: {
-    fontFamily: ['"Montserrat"'].join(","),
+    fontFamily: ['"Montserrat"'].join(",")
   },
   breakpoints: {
     values: {
@@ -13,9 +13,9 @@ const theme = createMuiTheme({
       sm: 600,
       md: 960,
       lg: 1280,
-      xl: 1920,
-    },
-  },
+      xl: 1920
+    }
+  }
 });
 
 export default theme;

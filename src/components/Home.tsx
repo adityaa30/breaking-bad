@@ -18,24 +18,24 @@ const useStyles = makeStyles((theme: Theme) => ({
     display: "flex",
     flexDirection: "column",
     background: `url(${BackgroundImage}) no-repeat center center fixed`,
-    backgroundSize: "cover",
+    backgroundSize: "cover"
   },
   appBar: {
-    height: theme.spacing(10),
+    height: theme.spacing(10)
   },
   search: {
     position: "relative",
     borderRadius: theme.shape.borderRadius,
     backgroundColor: fade(theme.palette.common.white, 0.15),
     "&:hover": {
-      backgroundColor: fade(theme.palette.common.white, 0.25),
+      backgroundColor: fade(theme.palette.common.white, 0.25)
     },
     margin: theme.spacing(2),
     width: "100%",
     [theme.breakpoints.up("sm")]: {
       marginLeft: theme.spacing(3),
-      width: "auto",
-    },
+      width: "auto"
+    }
   },
   searchIcon: {
     padding: theme.spacing(0, 2),
@@ -44,10 +44,10 @@ const useStyles = makeStyles((theme: Theme) => ({
     pointerEvents: "none",
     display: "flex",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "center"
   },
   inputRoot: {
-    color: "inherit",
+    color: "inherit"
   },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 0),
@@ -56,13 +56,13 @@ const useStyles = makeStyles((theme: Theme) => ({
     transition: theme.transitions.create("width"),
     width: "100%",
     [theme.breakpoints.up("md")]: {
-      width: "20ch",
-    },
+      width: "20ch"
+    }
   },
   pagination: {
     alignSelf: "center",
-    margin: theme.spacing(2),
-  },
+    margin: theme.spacing(2)
+  }
 }));
 
 const ITEMS_PER_PAGE = 10;
@@ -75,7 +75,7 @@ export default function Home() {
   const {
     text: searchText,
     debouncedText: debouncedSearchText,
-    setTextDebounced: setSearchText,
+    setTextDebounced: setSearchText
   } = useDebouncedText("", 1000);
 
   const { data: characters, loading } = useFetch<Array<Character>>(
@@ -83,7 +83,7 @@ export default function Home() {
       [
         `limit=${ITEMS_PER_PAGE}`,
         `offset=${paginationOffset}`,
-        `name=${debouncedSearchText.replace(" ", "+")}`,
+        `name=${debouncedSearchText.replace(" ", "+")}`
       ].join("&")
   );
 
@@ -100,7 +100,7 @@ export default function Home() {
             onChange={(event) => setSearchText(event.target.value)}
             classes={{
               root: styles.inputRoot,
-              input: styles.inputInput,
+              input: styles.inputInput
             }}
             fullWidth
             inputProps={{ "aria-label": "search" }}

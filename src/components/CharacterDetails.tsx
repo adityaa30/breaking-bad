@@ -1,12 +1,5 @@
-
-import React from 'react'; 
+import React from "react";
 
 export default function CharacterDetails() {
-
-
-  return (
-    <>
-    Character Details Page
-    </>
-  )
+  return <>Character Details Page</>;
 }

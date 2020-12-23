@@ -13,12 +13,12 @@ const useStyles = makeStyles((theme: Theme) => ({
     width: "100%",
     display: "grid",
     [theme.breakpoints.down("sm")]: {
-      display: "inline",
+      display: "inline"
     },
     gridTemplateColumns: "repeat(auto-fit, minmax(500px, 1fr))",
     overflowY: "auto",
-    overflowX: "hidden",
-  },
+    overflowX: "hidden"
+  }
 }));
 
 export default function CharacterCardGrid({ characters }: Props) {

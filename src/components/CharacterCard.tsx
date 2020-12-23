@@ -4,7 +4,7 @@ import {
   CardMedia,
   Chip,
   Theme,
-  Typography,
+  Typography
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import React from "react";
@@ -19,15 +19,15 @@ const useStyles = makeStyles((theme: Theme) => ({
     boxShadow: "20px 20px 22px rgba(0,0,0,0.2)",
     borderRadius: 8,
     margin: 24,
-    padding: 0,
+    padding: 0
   },
   image: {
     objectFit: "cover",
     width: 200,
     flexGrow: 1,
     [theme.breakpoints.down("xs")]: {
-      display: "none",
-    },
+      display: "none"
+    }
   },
   cardContent: {
     flexGrow: 5,
@@ -36,36 +36,36 @@ const useStyles = makeStyles((theme: Theme) => ({
     width: "auth"
   },
   name: {
-    fontWeight: 900,
+    fontWeight: 900
   },
   nickname: {
-    fontWeight: 400,
+    fontWeight: 400
   },
   innerContainer: {
     display: "flex",
-    flexDirection: "row",
+    flexDirection: "row"
   },
   overlayedText: {
     boxShadow: "0 4px 8px 0 rgba(0,0,0,0.2)",
     padding: 6,
     margin: 8,
     backgroundColor: "rgba(255, 255, 255, 0.1)",
-    borderRadius: 8,
+    borderRadius: 8
   },
   occupationContainer: {
     margin: 8,
     padding: 12,
     backgroundColor: "rgba(255, 255, 255, 0.1)",
-    borderRadius: 8,
+    borderRadius: 8
   },
   occupationText: {
-    fontWeight: 600,
+    fontWeight: 600
   },
   occupationChip: {
     borderWidth: 2,
     marginLeft: 4,
-    marginTop: 6,
-  },
+    marginTop: 6
+  }
 }));
 
 interface Props {

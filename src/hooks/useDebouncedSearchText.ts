@@ -18,5 +18,5 @@ export default function useDebouncedText(
     setDebouncedTextCallback(nextValue);
   };
 
-  return { text, debouncedText, setTextDebounced};
+  return { text, debouncedText, setTextDebounced };
 }
